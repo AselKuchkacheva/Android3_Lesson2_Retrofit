@@ -11,6 +11,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class GhibliStorage {
 
@@ -50,19 +51,20 @@ public class GhibliStorage {
         });
     }
 
-    public void getPeople (String peopleId, GhibliCallback<People> callback){
-        RetrofitBuilder.getInstance().getPeople(peopleId).enqueue(new Callback<People>() {
+    public void getPeoples (GhibliCallback<People> callback){
+        RetrofitBuilder.getInstance().getPeoples().enqueue(new Callback<List<People>>() {
             @Override
-            public void onResponse(Call<People> call, Response<People> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    callback.onSuccess(response.body());
+            public void onResponse(Call<List<People>> call, Response<List<People>> response) {
+                if (response.isSuccessful() && response.body() != null){
+                    callback.onSuccessList(response.body());
                 } else {
                     callback.onFailure("Request error...");
                 }
             }
+
             @Override
-            public void onFailure(Call<People> call, Throwable t) {
-                callback.onFailure(t.getLocalizedMessage());
+            public void onFailure(Call<List<People>> call, Throwable t) {
+
             }
         });
     }

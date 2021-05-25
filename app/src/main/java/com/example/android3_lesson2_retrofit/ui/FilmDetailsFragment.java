@@ -2,19 +2,28 @@ package com.example.android3_lesson2_retrofit.ui;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.android3_lesson2_retrofit.R;
 import com.example.android3_lesson2_retrofit.data.model.Film;
+import com.example.android3_lesson2_retrofit.data.model.People;
 import com.example.android3_lesson2_retrofit.data.storage.GhibliStorage;
 
+import java.util.List;
+
 public class FilmDetailsFragment extends Fragment {
+
     private GhibliStorage ghibliStorage = new GhibliStorage();
 
     private TextView tvDescription;
@@ -22,14 +31,18 @@ public class FilmDetailsFragment extends Fragment {
     private TextView tvDirector;
     private TextView tvProducer;
     private TextView tvReleaseDate;
+    private Button btnPeople;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            getData();
-        }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getData();
     }
 
     private void getData() {
@@ -47,6 +60,17 @@ public class FilmDetailsFragment extends Fragment {
                 tvDescription = getView().findViewById(R.id.tv_description);
                 tvDescription.setText(film.getDescription());
 
+                btnPeople = getView().findViewById(R.id.btn_people);
+                btnPeople.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.frame_layout,new PeopleFragment());
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                });
             }
         });
     }

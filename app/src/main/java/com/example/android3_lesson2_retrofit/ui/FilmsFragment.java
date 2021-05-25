@@ -31,7 +31,6 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -49,7 +48,6 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
             @Override
             public void onSuccessList(List<Film> films) {
                 adapter.setList(films);
-                Log.d("tag", String.valueOf(films.size()));
             }
         });
 
@@ -71,6 +69,7 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frame_layout,filmDetailsFragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 }

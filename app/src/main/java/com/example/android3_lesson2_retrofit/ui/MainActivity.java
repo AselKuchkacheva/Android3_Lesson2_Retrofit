@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frame_layout,new FilmsFragment());
+        transaction.addToBackStack(null);
         transaction.commit();
 
 //        ghibliStorage.getFilm("2baf70d1-42bb-4437-b551-e5fed5a87abe",

@@ -17,8 +17,6 @@ public interface GhibliApi {
     Call<Film> getFilm(
             @Path("id") String filmId);
 
-    @GET("people/{id}")
-    Call<People> getPeople(
-            @Path("id") String peopleId
-    );
+    @GET("people/")
+    Call<List<People>> getPeoples();
 }

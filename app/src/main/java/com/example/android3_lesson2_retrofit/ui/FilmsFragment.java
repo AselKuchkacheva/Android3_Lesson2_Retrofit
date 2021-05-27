@@ -23,6 +23,7 @@ import java.util.List;
 
 public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener{
 
+    public static final String KEY_FILM = "key";
     private RecyclerView recyclerView;
     private FilmAdapter adapter;
     private GhibliStorage ghibliStorage = new GhibliStorage();
@@ -63,7 +64,7 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
     @Override
     public void openDetails(String id) {
         Bundle bundle = new Bundle();
-        bundle.putString("key",id);
+        bundle.putString(KEY_FILM,id);
         FilmDetailsFragment filmDetailsFragment = new FilmDetailsFragment();
         filmDetailsFragment.setArguments(bundle);
         FragmentManager fragmentManager = getFragmentManager();

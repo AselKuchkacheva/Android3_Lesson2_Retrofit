@@ -1,5 +1,6 @@
 package com.example.android3_lesson2_retrofit.ui.adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,11 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull FilmAdapter.FilmViewHolder holder, int position) {
+        if (position % 2 == 0){
+            holder.itemView.setBackgroundColor(Color.LTGRAY);
+        }else {
+            holder.itemView.setBackgroundColor(Color.WHITE);
+        }
         holder.onBind(list.get(position));
     }
 

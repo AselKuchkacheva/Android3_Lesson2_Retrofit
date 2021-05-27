@@ -1,5 +1,8 @@
 package com.example.android3_lesson2_retrofit.ui.adapters;
 
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android3_lesson2_retrofit.R;
 import com.example.android3_lesson2_retrofit.data.model.Film;
 import com.example.android3_lesson2_retrofit.data.model.People;
+import com.example.android3_lesson2_retrofit.ui.FilmDetailsFragment;
+import com.example.android3_lesson2_retrofit.ui.FilmsFragment;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder> {
 
     private final List<People> list = new ArrayList<>();
-
     private PeopleDetailsListener peopleDetailsListener;
 
     @NonNull
@@ -32,6 +38,11 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
 
     @Override
     public void onBindViewHolder(@NonNull PeopleViewHolder holder, int position) {
+        if (position % 2 == 0){
+            holder.itemView.setBackgroundColor(Color.LTGRAY);
+        }else {
+            holder.itemView.setBackgroundColor(Color.WHITE);
+        }
         holder.onBind(list.get(position));
 
     }
@@ -53,11 +64,21 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
     public class PeopleViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvName;
         private final TextView tvAge;
+        private final TextView tvGender;
+        private final TextView tvEyeColor;
+        private final TextView tvHairColor;
+        private final TextView tvPeoplesFilms;
+        private final TextView tvPeopleSpecies;
 
         public PeopleViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);
             tvAge = itemView.findViewById(R.id.tv_age);
+            tvGender = itemView.findViewById(R.id.tv_gender);
+            tvEyeColor = itemView.findViewById(R.id.tv_eye_color);
+            tvHairColor = itemView.findViewById(R.id.tv_hair_color);
+            tvPeoplesFilms = itemView.findViewById(R.id.tv_people_films);
+            tvPeopleSpecies = itemView.findViewById(R.id.tv_people_species);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -69,10 +90,13 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
         public void onBind(People people) {
             tvName.setText(people.getName());
             tvAge.setText(people.getAge());
-
+            tvGender.setText(people.getGender());
+            tvEyeColor.setText(people.getEyeColor());
+            tvHairColor.setText(people.getHairColor());
+            tvPeoplesFilms.setText(people.getFilms().get(0));
+            tvPeopleSpecies.setText(people.getSpecies());
         }
     }
-
     public interface PeopleDetailsListener {
         void openPeopleDetails(String id);
     }

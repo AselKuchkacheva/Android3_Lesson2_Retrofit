@@ -71,15 +71,9 @@ public class GhibliStorage {
 
     public interface GhibliCallback<Data> {
         void onSuccess(Data data);
-        default void onSuccessList(List<Data> dataList){
-
-        };
+        void onSuccessList(List<Data> dataList);
         default void onFailure(String errorMsg){
             Log.d("tag", errorMsg);
         };
     }
-
-
-
-
 }

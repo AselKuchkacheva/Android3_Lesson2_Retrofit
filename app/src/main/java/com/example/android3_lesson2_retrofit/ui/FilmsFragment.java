@@ -41,6 +41,7 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
         adapter = new FilmAdapter();
         recyclerView.setAdapter(adapter);
         adapter.setTitleListener(this);
+
         ghibliStorage.getFilms(new GhibliStorage.GhibliCallback<Film>() {
             @Override
             public void onSuccess(Film film) {

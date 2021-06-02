@@ -46,7 +46,8 @@ public class FilmDetailsFragment extends Fragment {
     }
 
     private void getData() {
-        ghibliStorage.getFilm(getArguments().getString(FilmsFragment.KEY_FILM), new GhibliStorage.GhibliCallback<Film>() {
+        ghibliStorage.getFilm(getArguments().getString(FilmsFragment.KEY_FILM),
+                new GhibliStorage.GhibliCallback<Film>() {
             @Override
             public void onSuccess(Film film) {
                 tvTitle = getView().findViewById(R.id.tv_title);
@@ -72,7 +73,12 @@ public class FilmDetailsFragment extends Fragment {
                     }
                 });
             }
-        });
+
+                    @Override
+                    public void onSuccessList(List<Film> films) {
+
+                    }
+                });
     }
 
     @Override

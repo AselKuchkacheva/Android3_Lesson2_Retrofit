@@ -9,11 +9,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.android3_lesson2_retrofit.App;
 import com.example.android3_lesson2_retrofit.R;
 import com.example.android3_lesson2_retrofit.data.model.Film;
 import com.example.android3_lesson2_retrofit.data.storage.GhibliStorage;
@@ -26,7 +28,8 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
     public static final String KEY_FILM = "key";
     private RecyclerView recyclerView;
     private FilmAdapter adapter;
-    private GhibliStorage ghibliStorage = new GhibliStorage();
+    private final GhibliStorage ghibliStorage = new GhibliStorage();
+    private Button btnOpenLocal;
 
 
     @Override
@@ -41,6 +44,7 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
         adapter = new FilmAdapter();
         recyclerView.setAdapter(adapter);
         adapter.setTitleListener(this);
+        btnOpenLocal = view.findViewById(R.id.btn_open_local_data);
 
         ghibliStorage.getFilms(new GhibliStorage.GhibliCallback<Film>() {
             @Override
@@ -52,7 +56,16 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
                 adapter.setList(films);
             }
         });
-
+        btnOpenLocal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.frame_layout, new FilmRoomFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
     }
 
@@ -73,5 +86,10 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
         transaction.replace(R.id.frame_layout,filmDetailsFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void saveToRoom(Film film) {
+        App.dataBase.filmDao().insertFilm(film);
     }
 }

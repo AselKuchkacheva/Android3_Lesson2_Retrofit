@@ -6,24 +6,16 @@
     android:padding="5dp">
 
     <TextView
-        android:id="@+id/tv_pos_number"
+        android:id="@+id/tv_pos_number_room"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="22sp" />
 
     <TextView
-        android:id="@+id/tv_film_title"
+        android:id="@+id/tv_film_title_room"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="9"
         android:textSize="22sp" />
-
-    <CheckBox
-        android:id="@+id/ch_box_choose"
-        android:text="Save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
 </LinearLayout>

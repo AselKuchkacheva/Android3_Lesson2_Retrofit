@@ -36,6 +36,7 @@ public class FilmDetailsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 
@@ -73,7 +74,6 @@ public class FilmDetailsFragment extends Fragment {
                     }
                 });
             }
-
                     @Override
                     public void onSuccessList(List<Film> films) {
 

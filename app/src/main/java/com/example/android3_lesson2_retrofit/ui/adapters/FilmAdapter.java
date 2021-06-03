@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -56,17 +57,22 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
     public class FilmViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvTitle;
         private final TextView tvNumber;
+        private final Button btnSaveToRoom;
+
 
         public FilmViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_film_title);
             tvNumber = itemView.findViewById(R.id.tv_pos_number);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    titleListener.openDetails(list.get(getAdapterPosition()).getId());
-                }
-            });
+            btnSaveToRoom = itemView.findViewById(R.id.ch_box_choose);
+
+            itemView.setOnClickListener(v ->
+                    titleListener.openDetails(list.get(getAdapterPosition()).getId())
+            );
+
+            btnSaveToRoom.setOnClickListener(v ->
+                    titleListener.saveToRoom(list.get(getAdapterPosition()))
+            );
 
         }
 
@@ -78,6 +84,7 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
 
     public interface TitleListener{
         void openDetails(String id);
+        void saveToRoom(Film film);
     }
 
 }

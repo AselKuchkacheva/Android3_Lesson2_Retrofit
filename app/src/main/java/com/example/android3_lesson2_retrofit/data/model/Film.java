@@ -1,13 +1,25 @@
 package com.example.android3_lesson2_retrofit.data.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.android3_lesson2_retrofit.data.converters.ListConverter;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@Entity
+@TypeConverters(ListConverter.class)
 public class Film {
 
     @SerializedName("id")
+    @PrimaryKey
+    @NonNull
     private String id;
+    @ColumnInfo(name = "film_title")
     @SerializedName("title")
     private String title;
     @SerializedName("original_title")
@@ -19,6 +31,7 @@ public class Film {
     @SerializedName("director")
     private String director;
     @SerializedName("producer")
+    @ColumnInfo(name = "film_producer")
     private String producer;
     @SerializedName("release_date")
     private String releaseDate;
@@ -36,6 +49,14 @@ public class Film {
     private List<String> vehicles = null;
     @SerializedName("url")
     private String url;
+
+    public Film(String title, String description, String director, String producer, String id) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.director = director;
+        this.producer = producer;
+    }
 
     public String getId() {
         return id;

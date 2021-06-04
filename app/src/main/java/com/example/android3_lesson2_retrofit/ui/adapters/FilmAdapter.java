@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android3_lesson2_retrofit.App;
 import com.example.android3_lesson2_retrofit.R;
 import com.example.android3_lesson2_retrofit.data.model.Film;
 
@@ -57,7 +59,7 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
     public class FilmViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvTitle;
         private final TextView tvNumber;
-        private final Button btnSaveToRoom;
+        private final CheckBox btnSaveToRoom;
 
 
         public FilmViewHolder(@NonNull View itemView) {
@@ -66,25 +68,43 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
             tvNumber = itemView.findViewById(R.id.tv_pos_number);
             btnSaveToRoom = itemView.findViewById(R.id.ch_box_choose);
 
-            itemView.setOnClickListener(v ->
-                    titleListener.openDetails(list.get(getAdapterPosition()).getId())
-            );
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    titleListener.openDetails(list.get(getAdapterPosition()).getId());
+                }
+            });
 
-            btnSaveToRoom.setOnClickListener(v ->
-                    titleListener.saveToRoom(list.get(getAdapterPosition()))
-            );
+            btnSaveToRoom.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean checked  = ((CheckBox) v).isChecked();
 
+                    if (checked){
+                        titleListener.saveToRoom(list.get(getAdapterPosition()));
+                    } else {
+                        titleListener.removeFromRoom(list.get(getAdapterPosition()));
+                    }
+                }
+            });
         }
 
         public void onBind(Film film) {
             tvTitle.setText(film.getTitle());
             tvNumber.setText((1 + getAdapterPosition()) + "");
+
+            if (App.dataBase.filmDao().getFilmById(film.getId())!= null){
+                btnSaveToRoom.setChecked(true);
+            }else{
+                btnSaveToRoom.setChecked(false);
+            }
         }
     }
 
     public interface TitleListener{
         void openDetails(String id);
         void saveToRoom(Film film);
+        void removeFromRoom(Film film);
     }
 
 }

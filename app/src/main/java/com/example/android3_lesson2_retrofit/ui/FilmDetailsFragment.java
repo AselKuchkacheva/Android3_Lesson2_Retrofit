@@ -24,7 +24,7 @@ import java.util.List;
 
 public class FilmDetailsFragment extends Fragment {
 
-    private GhibliStorage ghibliStorage = new GhibliStorage();
+    private final GhibliStorage ghibliStorage = new GhibliStorage();
 
     private TextView tvDescription;
     private TextView tvTitle;
@@ -32,7 +32,6 @@ public class FilmDetailsFragment extends Fragment {
     private TextView tvProducer;
     private TextView tvReleaseDate;
     private Button btnPeople;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

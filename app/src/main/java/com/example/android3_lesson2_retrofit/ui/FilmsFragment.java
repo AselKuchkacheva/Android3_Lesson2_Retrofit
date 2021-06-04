@@ -31,7 +31,6 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
     private final GhibliStorage ghibliStorage = new GhibliStorage();
     private Button btnOpenLocal;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +65,6 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
                 transaction.commit();
             }
         });
-
     }
 
     @Override
@@ -91,5 +89,10 @@ public class FilmsFragment extends Fragment implements FilmAdapter.TitleListener
     @Override
     public void saveToRoom(Film film) {
         App.dataBase.filmDao().insertFilm(film);
+    }
+
+    @Override
+    public void removeFromRoom(Film film) {
+        App.dataBase.filmDao().deleteFilm(film);
     }
 }

@@ -18,10 +18,6 @@ import java.util.List;
 public class FilmRoomAdapter extends RecyclerView.Adapter<FilmRoomAdapter.FilmRoomViewHolder> {
     private List<Film> list = new ArrayList<>();
 
-    public void setList(List<Film> list) {
-        this.list = list;
-    }
-
     @NonNull
     @Override
     public FilmRoomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,7 +41,12 @@ public class FilmRoomAdapter extends RecyclerView.Adapter<FilmRoomAdapter.FilmRo
         return list.size();
     }
 
+    public void setList(List<Film> list) {
+        this.list = list;
+    }
+
     public class FilmRoomViewHolder extends RecyclerView.ViewHolder {
+
         private final TextView tvTitle;
         private final TextView tvNumber;
 

@@ -15,6 +15,7 @@ import java.util.List;
 @TypeConverters(ListConverter.class)
 public class Film {
 
+
     @SerializedName("id")
     @PrimaryKey
     @NonNull
@@ -49,6 +50,15 @@ public class Film {
     private List<String> vehicles = null;
     @SerializedName("url")
     private String url;
+    private boolean isSaved;
+
+    public boolean isSaved() {
+        return isSaved;
+    }
+
+    public void setSaved(boolean saved) {
+        isSaved = saved;
+    }
 
     public Film(String title, String description, String director, String producer, String id) {
         this.id = id;

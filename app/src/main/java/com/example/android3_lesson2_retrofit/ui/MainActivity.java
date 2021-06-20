@@ -5,15 +5,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.android3_lesson2_retrofit.R;
-import com.example.android3_lesson2_retrofit.data.model.Film;
-import com.example.android3_lesson2_retrofit.data.model.People;
-import com.example.android3_lesson2_retrofit.data.storage.GhibliStorage;
+import com.example.android3_lesson2_retrofit.ui.films.FilmsFragment;
 
 public class MainActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

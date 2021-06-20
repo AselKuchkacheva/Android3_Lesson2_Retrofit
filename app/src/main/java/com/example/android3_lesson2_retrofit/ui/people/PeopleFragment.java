@@ -1,4 +1,4 @@
-package com.example.android3_lesson2_retrofit.ui;
+package com.example.android3_lesson2_retrofit.ui.people;
 
 import android.os.Bundle;
 
@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 import com.example.android3_lesson2_retrofit.R;
 import com.example.android3_lesson2_retrofit.data.model.People;
 import com.example.android3_lesson2_retrofit.data.storage.GhibliStorage;
-import com.example.android3_lesson2_retrofit.ui.adapters.FilmAdapter;
-import com.example.android3_lesson2_retrofit.ui.adapters.PeopleAdapter;
 
 import java.util.List;
 

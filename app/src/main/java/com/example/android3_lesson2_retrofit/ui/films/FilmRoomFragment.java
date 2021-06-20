@@ -1,4 +1,4 @@
-package com.example.android3_lesson2_retrofit.ui;
+package com.example.android3_lesson2_retrofit.ui.films;
 
 import android.os.Bundle;
 
@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import com.example.android3_lesson2_retrofit.App;
 import com.example.android3_lesson2_retrofit.R;
-import com.example.android3_lesson2_retrofit.ui.adapters.FilmRoomAdapter;
 
 public class FilmRoomFragment extends Fragment {
 

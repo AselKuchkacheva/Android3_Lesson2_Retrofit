@@ -8,13 +8,17 @@ android {
 
     defaultConfig {
         applicationId "com.example.android3_lesson2_retrofit"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildFeatures {
+        viewBinding true
+    }
+
 
     buildTypes {
         release {
@@ -47,4 +51,6 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
 }

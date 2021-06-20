@@ -1,8 +1,6 @@
-package com.example.android3_lesson2_retrofit.ui.adapters;
+package com.example.android3_lesson2_retrofit.ui.people;
 
 import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android3_lesson2_retrofit.R;
-import com.example.android3_lesson2_retrofit.data.model.Film;
 import com.example.android3_lesson2_retrofit.data.model.People;
-import com.example.android3_lesson2_retrofit.ui.FilmDetailsFragment;
-import com.example.android3_lesson2_retrofit.ui.FilmsFragment;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder> {

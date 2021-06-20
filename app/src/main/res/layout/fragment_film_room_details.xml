@@ -7,7 +7,7 @@
     tools:context=".ui.films.FilmDetailsFragment">
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_title_details_room"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -19,23 +19,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_releaseDate"
+        android:id="@+id/tv_releaseDate_details_room"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="releaseDate"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+        app:layout_constraintTop_toBottomOf="@id/tv_title_details_room" />
 
     <LinearLayout
-        android:id="@+id/lin_lay_director"
+        android:id="@+id/lin_lay_director_details_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_releaseDate">
+        app:layout_constraintTop_toBottomOf="@id/tv_releaseDate_details_room">
 
         <TextView
             android:id="@+id/tv_director_title"
@@ -60,17 +60,17 @@
         android:orientation="horizontal"
         android:padding="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lin_lay_director">
+        app:layout_constraintTop_toBottomOf="@id/lin_lay_director_details_room">
 
         <TextView
-            android:id="@+id/tv_producer_title"
+            android:id="@+id/tv_producer_title_details_room"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Producer: " />
 
         <TextView
-            android:id="@+id/tv_producer"
+            android:id="@+id/tv_producer_details_room"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -78,7 +78,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_description"
+        android:id="@+id/tv_description_details_room"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
@@ -86,39 +86,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lin_lay_producer" />
-
-    <Button
-        android:id="@+id/btn_people"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:padding="5dp"
-        android:text="People"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_description" />
-
-    <Button
-        android:id="@+id/btn_species"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:padding="5dp"
-        android:text="Species"
-        app:layout_constraintLeft_toRightOf="@id/btn_people"
-        app:layout_constraintTop_toBottomOf="@id/tv_description" />
-
-    <Button
-        android:id="@+id/btn_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:padding="5dp"
-        android:text="Location"
-        app:layout_constraintLeft_toRightOf="@id/btn_species"
-        app:layout_constraintTop_toBottomOf="@id/tv_description" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

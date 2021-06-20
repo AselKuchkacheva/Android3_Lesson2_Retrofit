@@ -1,4 +1,4 @@
-package com.example.android3_lesson2_retrofit.ui.adapters;
+package com.example.android3_lesson2_retrofit.ui.films;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;

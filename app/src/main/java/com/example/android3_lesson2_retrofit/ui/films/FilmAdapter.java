@@ -1,6 +1,7 @@
-package com.example.android3_lesson2_retrofit.ui.adapters;
+package com.example.android3_lesson2_retrofit.ui.films;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,9 +35,9 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull FilmAdapter.FilmViewHolder holder, int position) {
-        if (position % 2 == 0){
+        if (position % 2 == 0) {
             holder.itemView.setBackgroundColor(Color.LTGRAY);
-        }else {
+        } else {
             holder.itemView.setBackgroundColor(Color.WHITE);
         }
         holder.onBind(list.get(position));
@@ -52,20 +53,20 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
         notifyDataSetChanged();
     }
 
-    public void setTitleListener(TitleListener titleListener){
+    public void setTitleListener(TitleListener titleListener) {
         this.titleListener = titleListener;
     }
 
     public class FilmViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvTitle;
-        private final TextView tvNumber;
+        private final Button btnQR;
         private final CheckBox btnSaveToRoom;
 
 
         public FilmViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_film_title);
-            tvNumber = itemView.findViewById(R.id.tv_pos_number);
+            btnQR = itemView.findViewById(R.id.btn_qr_code);
             btnSaveToRoom = itemView.findViewById(R.id.ch_box_choose);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -78,33 +79,46 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
             btnSaveToRoom.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    boolean checked  = ((CheckBox) v).isChecked();
+                    boolean checked = ((CheckBox) v).isChecked();
 
-                    if (checked){
+                    if (checked) {
                         titleListener.saveToRoom(list.get(getAdapterPosition()));
                     } else {
                         titleListener.removeFromRoom(list.get(getAdapterPosition()));
                     }
                 }
             });
+
+            btnQR.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    titleListener.createScan(list.get(getAdapterPosition()));
+                }
+            });
         }
 
         public void onBind(Film film) {
             tvTitle.setText(film.getTitle());
-            tvNumber.setText((1 + getAdapterPosition()) + "");
+            //  tvNumber.setText((1 + getAdapterPosition()) + "");
 
-            if (App.dataBase.filmDao().getFilmById(film.getId())!= null){
+            if (App.dataBase.filmDao().getFilmById(film.getId()) != null) {
                 btnSaveToRoom.setChecked(true);
-            }else{
+            } else {
                 btnSaveToRoom.setChecked(false);
             }
+//                btnSaveToRoom.setChecked(film.isSaved());
+
         }
     }
 
-    public interface TitleListener{
+    public interface TitleListener {
         void openDetails(String id);
+
         void saveToRoom(Film film);
+
         void removeFromRoom(Film film);
+
+        void createScan(Film film);
     }
 
 }
